@@ -7,8 +7,19 @@ import * as auth from './lib/auth';
 import UserHome from './Components/UserHome';
 import LandingPage from './Components/LandingPage';
 
+import { Route } from 'react-router-dom';
+import { IonReactRouter } from '@ionic/react-router';
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import '@ionic/react/css/core.css';
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
+
+setupIonicReact();
+
 function RequireAuth({ children }: { children: JSX.Element }) {
   const isLoggedIn = localStorage.getItem('token');
+  const [loggedIn, setLoggedIn] = useState(true);
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
@@ -30,6 +41,11 @@ function App() {
       </nav>
       <button onClick={auth.loginWithGoogle} type="button">Login with google</button>
       <button onClick={auth.logout} type="button">Log out</button>
+      {/* <>
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/SecondPage">test second page</Link>
+      </> */}
       <Routes>
         <Route path="/LandingPage" element={<LandingPage />} />
         <Route path="/login" element={<LandingPage />} />
@@ -42,6 +58,14 @@ function App() {
           )}
         />
       </Routes>
+
+      <IonApp>
+        <IonReactRouter>
+          <IonRouterOutlet id="root">
+            <Route path="/" component={UserHome} exact/>
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </IonApp>
 
     </>
   );
