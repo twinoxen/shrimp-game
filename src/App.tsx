@@ -7,6 +7,7 @@ import * as auth from './lib/auth';
 import UserHome from './Components/UserHome';
 import LandingPage from './Components/LandingPage';
 
+<<<<<<< HEAD
 import { Route } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
@@ -23,6 +24,11 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
+=======
+const currentHomepage = (loggedIn: boolean): JSX.Element => {
+  if (loggedIn) {
+    return <UserHome />;
+>>>>>>> feat: fix app and divide homepages
   }
 
   return children;
@@ -31,6 +37,7 @@ function RequireAuth({ children }: { children: JSX.Element }) {
 function App() {
   // const [loggedIn, setLoggedIn] = useState(false);
   return (
+<<<<<<< HEAD
     <>
       shrimp game
       <nav>
@@ -68,6 +75,13 @@ function App() {
       </IonApp>
 
     </>
+=======
+    <Routes>
+      <Route path="/SecondPage" element={<SecondPage />} />
+      <Route path="about" element={<About />} />
+      <Route path="/" element={currentHomepage(loggedIn)} />
+    </Routes>
+>>>>>>> feat: fix app and divide homepages
   );
 }
 
