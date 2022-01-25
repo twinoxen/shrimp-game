@@ -27,14 +27,19 @@ export async function loginWithTitter() {
     const credential = TwitterAuthProvider.credentialFromResult(result);
 
     return credential;
-  } catch (err) {
-    console.error(err);
+  } catch (error: any) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const { email } = error;
+    // The AuthCredential type that was used.
+    const credential = TwitterAuthProvider.credentialFromError(error);
 
-    throw err;
+    console.error(errorCode, errorMessage, email, credential);
+
+    throw error;
   }
 }
-
-loginWithTitter();
 
 export async function logout() {
   const auth = getAuth();
