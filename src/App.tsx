@@ -48,13 +48,14 @@ function App() {
     <>
       shrimp game
       <nav>
-        <Link to="/" element={() => currentHomepage(loggedIn)}>Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/SecondPage">test second page</Link>
       </nav>
       <Routes>
         <Route path="/SecondPage" element={<SecondPage />} />
         <Route path="about" element={<About />} />
+        <Route path="/" element={currentHomepage(loggedIn)} />
       </Routes>
     </>
   );
