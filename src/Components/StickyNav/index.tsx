@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Nav } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
 import { BsPatchCheck, BsWallet } from 'react-icons/bs';
@@ -24,6 +25,20 @@ function StickyNav({ toggleModal }) {
         </IonToolbar>
       </IconContext.Provider>
     </IonFooter>
+=======
+import { Container, Row, Col } from 'react-bootstrap';
+import { FaHome } from 'react-icons/fa';
+
+function StickyNav() {
+  return (
+    <Container>
+      <Row>
+        <Col>
+          <FaHome />
+        </Col>
+      </Row>
+    </Container>
+>>>>>>> prep for rebase
   );
 }
 
