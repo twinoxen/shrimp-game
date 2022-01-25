@@ -46,12 +46,11 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <>
-      shrimp game
-      <nav>
+      {/* <>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/SecondPage">test second page</Link>
-      </nav>
+      </> */}
       <Routes>
         <Route path="/SecondPage" element={<SecondPage />} />
         <Route path="about" element={<About />} />
