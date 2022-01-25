@@ -1,62 +1,48 @@
-import React, { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import React from 'react';
+import {
+  Routes, Route, Link, Navigate,
+} from 'react-router-dom';
 import './App.css';
+import * as auth from './lib/auth';
 import UserHome from './Components/UserHome';
 import LandingPage from './Components/LandingPage';
 
-function SecondPage() {
-  return (
-    <>
-      <main>
-        <h2>Welcome to the homepage!</h2>
-        <p>You can do this, I believe in you.</p>
-      </main>
-      <nav>
-        <Link to="/about">About</Link>
-      </nav>
-    </>
-  );
-}
+function RequireAuth({ children }: { children: JSX.Element }) {
+  const isLoggedIn = localStorage.getItem('token');
 
-function About() {
-  return (
-    <>
-      <main>
-        <h2>Who are we?</h2>
-        <p>
-          That feels like an existential question, don&apos;t you
-          think?
-        </p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
-  );
-}
-
-const currentHomepage = (loggedIn: boolean): JSX.Element => {
-  if (loggedIn) {
-    return <UserHome />;
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
   }
-  return <LandingPage />;
-};
+
+  return children;
+}
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
   return (
     <>
       shrimp game
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/SecondPage">test second page</Link>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/user-home">User home</Link></li>
+        </ul>
       </nav>
+      <button onClick={auth.loginWithGoogle} type="button">Login with google</button>
+      <button onClick={auth.logout} type="button">Log out</button>
       <Routes>
-        <Route path="/SecondPage" element={<SecondPage />} />
-        <Route path="about" element={<About />} />
-        <Route path="/" element={currentHomepage(loggedIn)} />
+        <Route path="/LandingPage" element={<LandingPage />} />
+        <Route path="/login" element={<LandingPage />} />
+        <Route
+          path="/user-home"
+          element={(
+            <RequireAuth>
+              <UserHome />
+            </RequireAuth>
+          )}
+        />
       </Routes>
+
     </>
   );
 }

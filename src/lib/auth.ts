@@ -1,12 +1,27 @@
 /* eslint-disable no-console */
 import './firebase';
 import {
-  getAuth, signInWithPopup, GoogleAuthProvider, TwitterAuthProvider,
+  getAuth as firebaseGetAuth,
+  onAuthStateChanged as firebaseOnAuthStateChanged,
+  signInWithPopup, GoogleAuthProvider, TwitterAuthProvider,
 } from 'firebase/auth';
+
+function watchAuth() {
+  const auth = firebaseGetAuth();
+  firebaseOnAuthStateChanged(auth, (user) => {
+    if (user) {
+      localStorage.setItem('token', user.uid);
+    } else {
+      localStorage.removeItem('token');
+    }
+  });
+}
+
+watchAuth();
 
 export async function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
-  const auth = getAuth();
+  const auth = firebaseGetAuth();
   try {
     const result = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -21,7 +36,7 @@ export async function loginWithGoogle() {
 
 export async function loginWithTitter() {
   const provider = new TwitterAuthProvider();
-  const auth = getAuth();
+  const auth = firebaseGetAuth();
   try {
     const result = await signInWithPopup(auth, provider);
     const credential = TwitterAuthProvider.credentialFromResult(result);
@@ -42,9 +57,14 @@ export async function loginWithTitter() {
 }
 
 export async function logout() {
-  const auth = getAuth();
+  const auth = firebaseGetAuth();
   await auth.signOut();
+
+  localStorage.removeItem('token');
 }
+
+export const onAuthStateChanged = firebaseOnAuthStateChanged;
+export const getAuth = firebaseGetAuth;
 
 export default {
   loginWithGoogle,
