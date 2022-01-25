@@ -15,8 +15,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   return (
     <Routes>
-      <Route path="/SecondPage" element={<SecondPage />} />
-      <Route path="about" element={<About />} />
       <Route path="/" element={currentHomepage(loggedIn)} />
     </Routes>
   );
