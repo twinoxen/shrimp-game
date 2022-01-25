@@ -77,8 +77,6 @@ function App() {
     </>
 =======
     <Routes>
-      <Route path="/SecondPage" element={<SecondPage />} />
-      <Route path="about" element={<About />} />
       <Route path="/" element={currentHomepage(loggedIn)} />
     </Routes>
 >>>>>>> feat: fix app and divide homepages
