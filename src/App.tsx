@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import UserHome from './Components/UserHome';
+import LandingPage from './Components/LandingPage';
 
 function SecondPage() {
   return (
@@ -33,12 +35,20 @@ function About() {
   );
 }
 
+const currentHomepage = (loggedIn: boolean): JSX.Element => {
+  if (loggedIn) {
+    return <UserHome />;
+  }
+  return <LandingPage />;
+};
+
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <>
       shrimp game
       <nav>
-        <Link to="/">Home</Link>
+        <Link to="/" element={() => currentHomepage(loggedIn)}>Home</Link>
         <Link to="/about">About</Link>
         <Link to="/SecondPage">test second page</Link>
       </nav>
