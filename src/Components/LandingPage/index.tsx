@@ -9,7 +9,7 @@ function SecondPage() {
         <p>You can do this, I believe in you.</p>
       </main>
       <nav>
-        <Link to="/about">About</Link>
+        {/* <Link to="/about">About</Link> */}
       </nav>
     </>
   );
@@ -26,7 +26,7 @@ function About() {
         </p>
       </main>
       <nav>
-        <Link to="/">Home</Link>
+        {/* <Link to="/">Home</Link> */}
       </nav>
     </>
   );
@@ -35,7 +35,7 @@ function About() {
 function LandingPage() {
   return (
     <>
-      <>
+      {/* <>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/SecondPage">test second page</Link>
@@ -50,7 +50,7 @@ function LandingPage() {
       </main>
       <nav>
         <Link to="/about">About</Link>
-      </nav>
+      </nav> */}
     </>
   );
 }

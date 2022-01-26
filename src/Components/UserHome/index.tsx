@@ -1,7 +1,7 @@
+import {
+  IonAccordion, IonAccordionGroup, IonApp, IonCol, IonContent, IonGrid, IonItem, IonLabel, IonList, IonPage, IonRow,
+} from '@ionic/react';
 import React, { useState } from 'react';
-// import { Routes, Route, Link } from 'react-router-dom';
-import { Container, Row, Accordion, Button, Modal } from 'react-bootstrap';
-import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 import StickyNav from '../StickyNav';
 
 function UserHome() {
@@ -14,40 +14,72 @@ function UserHome() {
   }
 
   return (
-    <>
-      <Container className="pt-5">
-        <Row className="justify-content-lg-center">
-          {/* Visited Houses Accordian */}
-          <Accordion defaultActiveKey="0" className="mb-5">
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Visited Houses</Accordion.Header>
-              <AccordionBody>
-                <Button>example house</Button>
-              </AccordionBody>
-            </Accordion.Item>
-          </Accordion>
+    <IonPage>
+      <IonContent>
+        <IonGrid>
+          <IonRow className="ion-justify-content-center">
+            <IonCol size-md={6}>
 
-          {/* Remaining Houses Accordian */}
-          <Accordion defaultActiveKey="1">
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>Remaining Houses</Accordion.Header>
-              <AccordionBody>
-                <Button variant="light" disabled>example house</Button>
-              </AccordionBody>
-            </Accordion.Item>
-          </Accordion>
-        </Row>
-      </Container>
+              <IonAccordionGroup>
+                <IonAccordion value="colors">
+                  <IonItem slot="header">
+                    <IonLabel>Colors</IonLabel>
+                  </IonItem>
 
-      <StickyNav key={0} toggleModal={toggle.bind(this)} />
+                  <IonList slot="content">
+                    <IonItem>
+                      <IonLabel>Red</IonLabel>
+                    </IonItem>
+                    <IonItem>
+                      <IonLabel>Green</IonLabel>
+                    </IonItem>
+                    <IonItem>
+                      <IonLabel>Blue</IonLabel>
+                    </IonItem>
+                  </IonList>
+                </IonAccordion>
+                <IonAccordion value="shapes">
+                  <IonItem slot="header">
+                    <IonLabel>Shapes</IonLabel>
+                  </IonItem>
 
-      <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Modal body content</Modal.Body>
-      </Modal>
-    </>
+                  <IonList slot="content">
+                    <IonItem>
+                      <IonLabel>Circle</IonLabel>
+                    </IonItem>
+                    <IonItem>
+                      <IonLabel>Triangle</IonLabel>
+                    </IonItem>
+                    <IonItem>
+                      <IonLabel>Square</IonLabel>
+                    </IonItem>
+                  </IonList>
+                </IonAccordion>
+                <IonAccordion value="numbers">
+                  <IonItem slot="header">
+                    <IonLabel>Numbers</IonLabel>
+                  </IonItem>
+
+                  <IonList slot="content">
+                    <IonItem>
+                      <IonLabel>1</IonLabel>
+                    </IonItem>
+                    <IonItem>
+                      <IonLabel>2</IonLabel>
+                    </IonItem>
+                    <IonItem>
+                      <IonLabel>3</IonLabel>
+                    </IonItem>
+                  </IonList>
+                </IonAccordion>
+              </IonAccordionGroup>
+
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonContent>
+      <StickyNav toggleModal={toggle}/>
+    </IonPage>
   );
 }
 
