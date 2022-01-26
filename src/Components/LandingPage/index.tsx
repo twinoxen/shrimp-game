@@ -41,9 +41,9 @@ function LandingPage() {
         <Link to="/SecondPage">test second page</Link>
       </>
       <Routes>
-      <Route path="/SecondPage" element={<SecondPage />} />
-      <Route path="about" element={<About />} />
-    </Routes>
+        <Route path="/SecondPage" element={<SecondPage />} />
+        <Route path="about" element={<About />} />
+      </Routes>
       <main>
         <h2>no auth Welcome to the homepage!</h2>
         <p>You can do this, I believe in you.</p>
