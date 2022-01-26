@@ -5,10 +5,14 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import UserHome from './Components/UserHome';
 import LandingPage from './Components/LandingPage';
+<<<<<<< HEAD
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
 import '@ionic/react/css/typography.css';
+=======
+import 'bootstrap/dist/css/bootstrap.min.css';
+>>>>>>> feat: quick modal
 
 /* Optional CSS utils that can be commented out */
 import '@ionic/react/css/padding.css';
@@ -27,6 +31,7 @@ function HomePage(loggedIn) {
 }
 
 function App() {
+<<<<<<< HEAD
   const [loggedIn, setLoggedIn] = useState(false);
   const isLoggedIn = localStorage.getItem('token');
 
@@ -47,6 +52,9 @@ function App() {
     }
   }, [loggedIn]);
 
+=======
+  const [loggedIn, setLoggedIn] = useState(true);
+>>>>>>> feat: quick modal
   return (
     <>
       {/* <Routes>
