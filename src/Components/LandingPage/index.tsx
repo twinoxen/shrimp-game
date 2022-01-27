@@ -6,9 +6,16 @@ import {
   IonCol,
   IonButton,
   IonImg,
+  div,
   IonLabel,
   IonList,
   IonListHeader,
+<<<<<<< HEAD
+=======
+  IonFooter,
+  IonTitle,
+  IonText,
+>>>>>>> prep for rebase
 } from '@ionic/react'
 import React from 'react'
 import * as auth from '../../lib/auth'
@@ -37,7 +44,7 @@ function LandingPage() {
                 <h5>SEARCH | COMPETE | SPOT</h5>
               </IonRow>
               <IonRow className="ion-justify-content-center">
-                <IonCol size-md={6} className="ion-justify-content-center">
+                <IonCol size-md={6} size-xs={10} className="ion-justify-content-center">
                   <IonButton onClick={auth.loginWithGoogle} type="button">
                     Login with google
                   </IonButton>

@@ -11,7 +11,9 @@ import {
   IonLabel,
   IonList,
   IonPage,
+  IonRefresher,
   IonRow,
+  RefresherEventDetail,
 } from '@ionic/react';
 import StickyNav from '../StickyNav';
 import HouseCard from '../HouseCard';
@@ -51,53 +53,65 @@ function UserHome({ user, toggleModal, toggleWalletModel }) {
     console.log(verifiedHouses);
   }, [usrHouseIds]);
 
+  function doRefresh(event: CustomEvent<RefresherEventDetail>) {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.detail.complete();
+    }, 2000);
+  }
+
   return (
     <IonPage>
       <IonContent>
-        <IonGrid>
-          <IonRow className="ion-justify-content-center">
-            <IonCol size-md={6}>
-              {/* visitedHouses */}
-              <IonCard>
+      <IonRefresher slot="fixed" onIonRefresh={doRefresh} pullFactor={0.5} pullMin={100} pullMax={200}>
+          <IonGrid>
+            <IonRow className="ion-justify-content-center">
+              <IonCol size-md={6}>
+                {/* visitedHouses */}
+                <IonCard>
+                  <IonAccordionGroup>
+                    <IonAccordion value="visitedHouses">
+                      <IonItem slot="header" className="padding-vertical">
+                        <IonLabel className="padding-vertical">
+                          Visited Spots
+                        </IonLabel>
+                      </IonItem>
+
+                      <IonList slot="content">
+                        {verifiedHouses.map((item: any) => (
+                          <IonItem key={item.id}>
+                            <HouseCard verified houseObj={item} />
+                          </IonItem>
+                        ))}
+                      </IonList>
+                    </IonAccordion>
+                  </IonAccordionGroup>
+                </IonCard>
+
+                {/* unvisitedHouses */}
                 <IonAccordionGroup>
-                  <IonAccordion value="visitedHouses">
+                  <IonAccordion value="unvisitedHouses">
                     <IonItem slot="header" className="padding-vertical">
-                      <IonLabel className="padding-vertical">
-                        Visited Spots
-                      </IonLabel>
+                      <IonLabel>Spots to Visit</IonLabel>
                     </IonItem>
 
                     <IonList slot="content">
-                      {verifiedHouses.map((item: any) => (
+                      {otherHouses.map((item: any) => (
                         <IonItem key={item.id}>
-                          <HouseCard verified houseObj={item} />
+                          <HouseCard verified={false} houseObj={item} />
                         </IonItem>
                       ))}
                     </IonList>
                   </IonAccordion>
                 </IonAccordionGroup>
-              </IonCard>
-
-              {/* unvisitedHouses */}
-              <IonAccordionGroup>
-                <IonAccordion value="unvisitedHouses">
-                  <IonItem slot="header" className="padding-vertical">
-                    <IonLabel>Spots to Visit</IonLabel>
-                  </IonItem>
-
-                  <IonList slot="content">
-                    {otherHouses.map((item: any) => (
-                      <IonItem key={item.id}>
-                        <HouseCard verified={false} houseObj={item} />
-                      </IonItem>
-                    ))}
-                  </IonList>
-                </IonAccordion>
-              </IonAccordionGroup>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </IonRefresher>
       </IonContent>
+
       <StickyNav
         toggleModal={toggleModal}
         toggleWalletModel={toggleWalletModel}

@@ -117,7 +117,7 @@ function App() {
                 size-xs={6}
                 className="ion-text-right ion-align-itesms-center"
               >
-                <IonButton onClick={() => {
+                <IonButton disabled onClick={() => {
                   setShow(!show)
                   window.location.reload();
                   }}>Close</IonButton>
@@ -128,6 +128,7 @@ function App() {
         </IonContent>
       </IonModal>
 
+      {/* wallet modal */}
       <IonModal isOpen={walletModel} trigger="trigger-button">
         <IonContent>
           <IonGrid>
