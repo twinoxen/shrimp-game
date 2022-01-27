@@ -66,7 +66,7 @@ function App() {
 
   function submitWallet() {
     // Save user wallet in db
-    console.log('Submited wallet: ' + userWallet)
+    console.log('Submitted wallet: ' + userWallet)
   }
 
   function HomePage(loggedIn, toggle) {
