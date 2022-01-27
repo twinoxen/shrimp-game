@@ -21,11 +21,10 @@ async function testDb() {
 }
 
 export async function checkUser(token) {
-
   let currentUser;
   try {
     const usersRef = collection(db, 'users');
-    const q = query(usersRef, where('id', '==', token))
+    const q = query(usersRef, where('id', '==', token));
 
     const querySnapshot = await getDocs(q);
 
@@ -36,7 +35,6 @@ export async function checkUser(token) {
     console.log('No Game user for ', token);
     return false;
   }
-  // }
   catch (err) {
     return err;
   }
@@ -55,4 +53,8 @@ export async function createUser(id, fullUser) {
   } catch (err) {
     return err;
   }
+}
+
+export async function saveCheckin(user, house) {
+
 }
