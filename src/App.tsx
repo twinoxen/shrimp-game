@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createContext } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom'
 import './App.css';
 import {
   IonApp, IonButton, IonContent, IonModal, IonRouterOutlet, setupIonicReact, IonRow, IonCol, IonText, IonGrid, IonInput,
@@ -91,6 +91,7 @@ function App() {
         <IonReactRouter>
           <IonRouterOutlet id="root">
             <Route path="/" render={() => HomePage(isLoggedIn, toggle)} exact />
+            <Route render={() => <Redirect to={'/'} />} />
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>
