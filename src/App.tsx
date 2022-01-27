@@ -1,36 +1,55 @@
-import React from 'react';
-import {
-  Routes, Route, Link, Navigate,
-} from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route } from 'react-router-dom';
 import './App.css';
-import * as auth from './lib/auth';
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import { IonReactRouter } from '@ionic/react-router';
 import UserHome from './Components/UserHome';
 import LandingPage from './Components/LandingPage';
+import '@ionic/react/css/core.css';
+import '@ionic/react/css/normalize.css';
+import '@ionic/react/css/structure.css';
+import '@ionic/react/css/typography.css';
 
-function RequireAuth({ children }: { children: JSX.Element }) {
-  const isLoggedIn = localStorage.getItem('token');
+/* Optional CSS utils that can be commented out */
+import '@ionic/react/css/padding.css';
+import '@ionic/react/css/float-elements.css';
+import '@ionic/react/css/text-alignment.css';
+import '@ionic/react/css/text-transformation.css';
+import '@ionic/react/css/flex-utils.css';
+import '@ionic/react/css/display.css';
 
-  if (!isLoggedIn) {
-    return <Navigate to="/login" replace />;
+setupIonicReact();
+function HomePage(loggedIn) {
+  if (loggedIn) {
+    return <UserHome />;
   }
-
-  return children;
+  return <LandingPage />;
 }
 
 function App() {
-  // const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const isLoggedIn = localStorage.getItem('token');
+
+  // const RequireAuth = ({ children }: { children: JSX.Element }) => {
+
+  //   if (!isLoggedIn) {
+  //     setLoggedIn(false)
+  //     return <Navigate to="/login" replace />;
+  //   }
+
+  //   setLoggedIn(true)
+
+  //   return children;
+  // }
+  useEffect(() => {
+    if (isLoggedIn) {
+      setLoggedIn(true);
+    }
+  }, [loggedIn]);
+
   return (
     <>
-      shrimp game
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/user-home">User home</Link></li>
-        </ul>
-      </nav>
-      <button onClick={auth.loginWithGoogle} type="button">Login with google</button>
-      <button onClick={auth.logout} type="button">Log out</button>
-      <Routes>
+      {/* <Routes>
         <Route path="/LandingPage" element={<LandingPage />} />
         <Route path="/login" element={<LandingPage />} />
         <Route
@@ -41,9 +60,25 @@ function App() {
             </RequireAuth>
           )}
         />
-      </Routes>
+      </Routes> */}
+      <IonApp>
+        <IonReactRouter>
+          <IonRouterOutlet id="root">
+            <Route
+              path="/"
+              render={() => HomePage(isLoggedIn)}
+              exact
+            />
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </IonApp>
 
     </>
+    // <Routes>
+    //   <Route path="/SecondPage" element={<SecondPage />} />
+    //   <Route path="about" element={<About />} />
+    //   <Route path="/" element={currentHomepage(loggedIn)} />
+    // </Routes>
   );
 }
 
