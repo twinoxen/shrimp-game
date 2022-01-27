@@ -6,16 +6,9 @@ import {
   IonCol,
   IonButton,
   IonImg,
-  div,
   IonLabel,
   IonList,
   IonListHeader,
-<<<<<<< HEAD
-=======
-  IonFooter,
-  IonTitle,
-  IonText,
->>>>>>> prep for rebase
 } from '@ionic/react'
 import React from 'react'
 import * as auth from '../../lib/auth'
@@ -48,9 +41,9 @@ function LandingPage() {
                   <IonButton onClick={auth.loginWithGoogle} type="button">
                     Login with google
                   </IonButton>
-                  <IonButton onClick={auth.logout} type="button">
+                  {/* <IonButton onClick={auth.logout} type="button">
                     Log out
-                  </IonButton>
+                  </IonButton> */}
                 </IonCol>
               </IonRow>
               <IonList style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>

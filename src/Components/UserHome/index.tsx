@@ -91,6 +91,7 @@ function UserHome({ user, toggleModal, toggleWalletModel }) {
                 </IonCard>
 
                 {/* unvisitedHouses */}
+
                 <IonAccordionGroup>
                   <IonAccordion value="unvisitedHouses">
                     <IonItem slot="header" className="padding-vertical">

@@ -117,7 +117,7 @@ function App() {
                 size-xs={6}
                 className="ion-text-right ion-align-itesms-center"
               >
-                <IonButton disabled onClick={() => {
+                <IonButton onClick={() => {
                   setShow(!show)
                   window.location.reload();
                   }}>Close</IonButton>
