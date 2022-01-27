@@ -62,12 +62,12 @@ function QrScanner() {
       </p>
 
       {isScanned && (
-        <video autoPlay style={{ width: '100%' }}>
+        <video autoPlay style={{ width: '100%' }} controls muted>
           <source src={house.video} type="video/mp4" />
         </video>
       )}
     </div>
-  );
+  )
 }
 
 export default QrScanner;
