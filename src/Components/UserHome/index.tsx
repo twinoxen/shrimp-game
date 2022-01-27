@@ -18,13 +18,13 @@ import HouseCard from '../HouseCard'
 
 import { houseData } from '../../houseData'
 
-function UserHome({ toggleModal }) {
+function UserHome({ toggleModal, toggleWalletModel }) {
   const [fullscreen, setFullscreen] = useState(true)
   const [verifiedHouses, setVerifiedHouses] = useState([])
   const [otherHouses, setOtherHouses] = useState([])
 
   useEffect(() => {
-    const usrHouseIds = Array.from(new Set([1,8,9]))
+    const usrHouseIds = Array.from(new Set([1, 8, 9]))
 
     let verifiedSet = new Set()
     let otherSet = new Set()
@@ -42,8 +42,7 @@ function UserHome({ toggleModal }) {
     setOtherHouses(Array.from(otherSet))
 
     console.log(verifiedHouses)
-  }, []);
-  
+  }, [])
 
   return (
     <IonPage>
@@ -92,7 +91,10 @@ function UserHome({ toggleModal }) {
           </IonRow>
         </IonGrid>
       </IonContent>
-      <StickyNav toggleModal={toggleModal} />
+      <StickyNav
+        toggleModal={toggleModal}
+        toggleWalletModel={toggleWalletModel}
+      />
 
       {/* <StickyNav key={0} toggleModal={toggle.bind(this)} /> */}
     </IonPage>

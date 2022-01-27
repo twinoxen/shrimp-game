@@ -1,7 +1,22 @@
-import { IonPage, IonContent, IonGrid, IonRow, IonCol, IonButton, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonFooter, IonTitle, IonText } from '@ionic/react';
-import React from 'react';
-import * as auth from '../../lib/auth';
-import Logo from '../../assets/shrimpgamepink.png';
+import {
+  IonPage,
+  IonContent,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonButton,
+  IonImg,
+  div,
+  IonLabel,
+  IonList,
+  IonListHeader,
+  IonFooter,
+  IonTitle,
+  IonText,
+} from '@ionic/react'
+import React from 'react'
+import * as auth from '../../lib/auth'
+import Logo from '../../assets/shrimpgamepink.png'
 
 function LandingPage() {
   return (
@@ -12,93 +27,121 @@ function LandingPage() {
             <IonImg src={Logo} alt="shrimp games logo" />
           </IonRow>
           <IonRow className="ion-justify-content-center">
-            <IonCol size-md={6} className="ion-justify-content-center ion-align-content center">
+            <IonCol
+              size-md={6}
+              className="ion-justify-content-center ion-align-content center"
+            >
               <IonRow className="ion-justify-content-center">
-                <h3>an IRL NFT scavenger hunt at Miami Hack Week for a $1,000 cash prize</h3>
+                <h3>
+                  an IRL NFT scavenger hunt at Miami Hack Week for a $1,000 cash
+                  prize
+                </h3>
               </IonRow>
               <IonRow className="ion-justify-content-center">
                 <h5>SEARCH | COMPETE | SPOT</h5>
               </IonRow>
-              <IonList>
-                <IonListHeader>
-                  <IonLabel>The Rules:</IonLabel>
+              <IonRow className="ion-justify-content-center">
+                <IonCol size-md={6} className="ion-justify-content-center">
+                  <IonButton onClick={auth.loginWithGoogle} type="button">
+                    Login with google
+                  </IonButton>
+                  <IonButton onClick={auth.logout} type="button">
+                    Log out
+                  </IonButton>
+                </IonCol>
+              </IonRow>
+              <IonList style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
+                <IonListHeader className="ion-padding-bottom">
+                  <IonLabel style={{ color: '#fdfdfd' }}>The Rules:</IonLabel>
                 </IonListHeader>
-                <IonItem>
-                  <IonLabel> There are 10 SPOT locations across Miami Hack Week </IonLabel>
-                </IonItem>
-                <IonItem>
-                  <IonLabel>
-                    Collect at least 5 Shrimpgames SPOTs by Friday at 2pm (expo start)
-                  </IonLabel>
-                </IonItem>
-                <IonItem>
-                  <IonLabel> Receive the final envelope at the MHW expo Friday at 3pm </IonLabel>
-                </IonItem>
-                <IonItem>
-                  <IonLabel>
-                    1st team to find the final SPOT will receive $1,000 grand prize
-                  </IonLabel>
-                </IonItem>
+                <div
+                  className="ion-padding-bottom"
+                  style={{ background: '#222428', color: '#fdfdfd' }}
+                >
+                  There are 10 SPOT locations across Miami Hack Week
+                </div>
+                <div
+                  className="ion-padding-bottom"
+                  style={{ backgroundColor: '#222428', color: '#fdfdfd' }}
+                >
+                  Collect at least 5 Shrimpgames SPOTs by Friday at 2pm (expo
+                  start)
+                </div>
+                <div
+                  className="ion-padding-bottom"
+                  style={{ backgroundColor: '#222428', color: '#fdfdfd' }}
+                >
+                  Receive the final envelope at the MHW expo Friday at 3pm{' '}
+                </div>
+                <div
+                  className="ion-padding-bottom"
+                  style={{ backgroundColor: '#222428', color: '#fdfdfd' }}
+                >
+                  1st team to find the final SPOT will receive $1,000 grand
+                  prize
+                </div>
               </IonList>
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol color="dark" size-md={2} className="ion-justify-content-center">
-              <IonItem>
+            <IonListHeader className="ion-padding-bottom">
+              <IonLabel style={{ color: '#fdfdfd' }}>The Spots:</IonLabel>
+            </IonListHeader>
+            <IonCol
+              color="dark"
+              size-md={2}
+              className="ion-justify-content-center"
+            >
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>Shrimp Society House</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>CIC Miami</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>HF0 Hacker Village</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>La Tropical</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>Hacker HQ (Annex)</IonLabel>
-              </IonItem>
+              </div>
             </IonCol>
-            <IonCol color="dark" size-md={2} className="ion-justify-content-center">
-              <IonItem>
+            <IonCol
+              color="dark"
+              size-md={2}
+              className="ion-justify-content-center"
+            >
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>Threshold House</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>Polygon House</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>TrueWorks House</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>Usage.Ai House</IonLabel>
-              </IonItem>
-              <IonItem>
+              </div>
+              <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>Quicknode</IonLabel>
-              </IonItem>
+              </div>
             </IonCol>
-          </IonRow>
-          <IonRow className="ion-justify-content-center">
-            <IonCol size-md={6} className="ion-justify-content-center">
-              <IonButton onClick={auth.loginWithGoogle} type="button">Login with google</IonButton>
-              <IonButton onClick={auth.logout} type="button">Log out</IonButton>
-            </IonCol>
+            <IonListHeader className="ion-padding-bottom">
+              <IonLabel style={{ color: '#fdfdfd' }}>Powered by SpotX</IonLabel>
+            </IonListHeader>
+            <div>
+              SPOT: Solana Proof of thing Solana Proof of Thing is a protocol
+              that allows anyone to create location-based NFTs. Similar to
+              POAPs, SPOTs act as earned collectibles on the Solana ecosystem.
+            </div>
           </IonRow>
         </IonGrid>
       </IonContent>
-      <IonFooter className="ion-no-border">
-        <IonTitle>
-          powered by SpotX
-        </IonTitle>
-        <IonText>
-          SPOT: Solana Proof of thing
-          Solana Proof of Thing is a protocol that allows anyone to create 
-          location-based NFTs. Similar to POAPs, SPOTs act as earned collectibles 
-          on the Solana ecosystem.
-        </IonText>
-      </IonFooter>
     </IonPage>
-  );
+  )
 }
 
-export default LandingPage;
+export default LandingPage

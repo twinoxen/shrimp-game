@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import {
-  IonApp, IonButton, IonContent, IonModal, IonRouterOutlet, setupIonicReact, IonRow, IonCol, IonText, IonGrid,
+  IonApp, IonButton, IonContent, IonModal, IonRouterOutlet, setupIonicReact, IonRow, IonCol, IonText, IonGrid, IonInput,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import UserHome from './Components/UserHome';
@@ -41,18 +41,39 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const isLoggedIn = localStorage.getItem('token');
   const [show, setShow] = useState(false);
+  const [walletModel, setWalletModel] = useState(false)
   const [user, setUser] = useState(null);
+  const [userWallet, setUserWallet] = useState('No wallet connected')
 
   // const AppContext = createContext([user, setUser]);
+
+  useEffect(() => {
+    // Get wallet user wallet from db
+    // if (walletFromDb) {
+    //   setUserWallet(walletFromDb)
+    // }
+  
+  }, [])
 
   function toggle() {
     console.log('hello');
     setShow(!show);
   }
 
+  function toggleWalletModel() {
+    setWalletModel(!walletModel)
+  }
+
+  function submitWallet() {
+    // Save user wallet in db
+    console.log('Submited wallet: ' + userWallet)
+  }
+
   function HomePage(loggedIn, toggle) {
     if (isLoggedIn) {
-      return <UserHome toggleModal={toggle} />;
+      return (
+        <UserHome toggleModal={toggle} toggleWalletModel={toggleWalletModel} />
+      )
     }
     return <LandingPage />;
   }
@@ -69,11 +90,7 @@ function App() {
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet id="root">
-            <Route
-              path="/"
-              render={() => HomePage(isLoggedIn, toggle)}
-              exact
-            />
+            <Route path="/" render={() => HomePage(isLoggedIn, toggle)} exact />
           </IonRouterOutlet>
         </IonReactRouter>
       </IonApp>
@@ -86,7 +103,10 @@ function App() {
                   <h2>Spot Scan In</h2>
                 </IonText>
               </IonCol>
-              <IonCol size-xs={6} className="ion-text-right ion-align-itesms-center">
+              <IonCol
+                size-xs={6}
+                className="ion-text-right ion-align-itesms-center"
+              >
                 <IonButton onClick={() => setShow(!show)}>Close</IonButton>
               </IonCol>
             </IonRow>
@@ -94,8 +114,36 @@ function App() {
           <QrScanner />
         </IonContent>
       </IonModal>
+
+      <IonModal isOpen={walletModel} trigger="trigger-button">
+        <IonContent>
+          <IonGrid>
+            <IonRow className="ion-justify-content-around">
+              <IonCol size-xs={6} className="ion-text-center">
+                <IonText className="ion-align-items-center">
+                  <h2>Connect your SOL wallet</h2>
+                </IonText>
+              </IonCol>
+              <IonCol
+                size-xs={6}
+                className="ion-text-right ion-align-itesms-center"
+              >
+                <IonButton onClick={() => setWalletModel(!walletModel)}>
+                  Close
+                </IonButton>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+          <IonInput
+            placeholder="Wallet"
+            onIonChange={(e) => setUserWallet(e.detail.value!)}
+          />
+          <p>Your Wallet: {userWallet}</p>
+          <IonButton onClick={() => submitWallet()}>Submit</IonButton>
+        </IonContent>
+      </IonModal>
     </>
-  );
+  )
 }
 
 export default App;
