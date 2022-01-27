@@ -1,4 +1,4 @@
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, getDoc, doc, where, query, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 
 export interface HouseConfig {
@@ -20,4 +20,39 @@ async function testDb() {
   }
 }
 
-testDb();
+export async function checkUser(token) {
+
+  let currentUser;
+  try {
+    const usersRef = collection(db, 'users');
+    const q = query(usersRef, where('id', '==', token))
+
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot[0]) {
+      console.log('this is the user', currentUser);
+      return querySnapshot[0];
+    }
+    console.log('No Game user for ', token);
+    return false;
+  }
+  // }
+  catch (err) {
+    return err;
+  }
+}
+
+export async function createUser(id, fullUser) {
+  try {
+    const docRef = await addDoc(collection(db, 'users'), {
+      id,
+      authData: fullUser,
+      house_id: null,
+      visitedHouses: [],
+    });
+    console.log('Document written with ID: ', docRef.id);
+    return docRef;
+  } catch (err) {
+    return err;
+  }
+}

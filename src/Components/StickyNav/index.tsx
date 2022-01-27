@@ -1,8 +1,9 @@
 import React from 'react';
 import { IconContext } from 'react-icons';
 import { BsPatchCheck, BsWallet } from 'react-icons/bs';
-import { BiUserCircle } from 'react-icons/bi';
+import { FiLogOut } from 'react-icons/fi';
 import { IonFooter, IonCol, IonToolbar, IonRow } from '@ionic/react';
+import * as auth from '../../lib/auth';
 
 function StickyNav({ toggleModal }) {
   return (
@@ -17,7 +18,7 @@ function StickyNav({ toggleModal }) {
               <BsPatchCheck onClick={() => toggleModal()} />
             </IonCol>
             <IonCol size-xs={3} className="ion-text-center">
-              <BiUserCircle />
+              <FiLogOut onClick={auth.logout} />
             </IonCol>
           </IonRow>
         </IonToolbar>

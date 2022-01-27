@@ -11,8 +11,10 @@ function watchAuth() {
   firebaseOnAuthStateChanged(auth, (user) => {
     if (user) {
       localStorage.setItem('token', user.uid);
+      localStorage.setItem('fullUser', JSON.stringify(user));
     } else {
       localStorage.removeItem('token');
+      localStorage.removeItem('fullUser');
     }
   });
 }
@@ -25,7 +27,7 @@ export async function loginWithGoogle() {
   try {
     const result = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
-
+    window.location.reload();
     return credential;
   } catch (err) {
     console.error(err);
@@ -61,6 +63,8 @@ export async function logout() {
   await auth.signOut();
 
   localStorage.removeItem('token');
+  localStorage.removeItem('fullUser');
+  window.location.reload();
 }
 
 export const onAuthStateChanged = firebaseOnAuthStateChanged;
