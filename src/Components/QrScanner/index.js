@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import { Player } from 'video-react';
 import { houseData } from '../../houseData';
-import { checkUser, saveCheckin} from '../../lib/db';
+import { checkUser, saveCheckin } from '../../lib/db';
 
 function QrScanner() {
   const [house, setHouse] = useState({});
@@ -30,16 +30,14 @@ function QrScanner() {
         const userData = await checkUser(token);
         console.log('this is the userData', userData);
         // userData.visitedHouses
-        const visitsUpdate = userData.visitedHouses.push(houseId);
-        const result = await saveCheckin(token, visitsUpdate);
+        userData.visitedHouses.push(parseInt(houseId));
+        const result = await saveCheckin(token, userData.visitedHouses);
         console.log('result', result);
 
         setIsScanned(true);
 
         // Save scan in database database
-      } catch (err)
-      {return err}
-
+      } catch (err) { return err; }
     }
   };
 

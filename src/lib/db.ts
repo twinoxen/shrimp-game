@@ -58,11 +58,9 @@ export async function checkUser(token) {
     if (currentUser) {
       console.log('THERE is a user', currentUser);
       return currentUser;
-    } else {
-      console.log('No Game user for ', token);
-      return false
     }
-
+    console.log('No Game user for ', token);
+    return false;
   } catch (err) {
     return err;
   }

@@ -76,4 +76,4 @@ export const houseData = [
       'https://storage.googleapis.com/landed-public/miami-hack-week/WinnerNFT.mp4',
     nft: 'https://storage.googleapis.com/landed-public/miami-hack-week/Winner.gif',
   },
-]
+];

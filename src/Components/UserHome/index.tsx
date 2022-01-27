@@ -18,13 +18,20 @@ import HouseCard from '../HouseCard';
 
 import { houseData } from '../../houseData';
 
-function UserHome({ toggleModal, toggleWalletModel }) {
-  const [fullscreen, setFullscreen] = useState(true);
+function UserHome({ user, toggleModal, toggleWalletModel }) {
   const [verifiedHouses, setVerifiedHouses] = useState([]);
   const [otherHouses, setOtherHouses] = useState([]);
+  const [usrHouseIds, setUsrHouseIds] = useState([]);
 
   useEffect(() => {
-    const usrHouseIds = Array.from(new Set([1, 8, 9]));
+    if (user.visitedHouses && Array.isArray(user.visitedHouses)) {
+      let houses = Array.from(new Set(user.visitedHouses));
+      console.log('thses are the houses', houses)
+      setUsrHouseIds(houses);
+    }
+  },[user])
+
+  useEffect(() => {
 
     const verifiedSet = new Set();
     const otherSet = new Set();
@@ -42,7 +49,7 @@ function UserHome({ toggleModal, toggleWalletModel }) {
     setOtherHouses(Array.from(otherSet));
 
     console.log(verifiedHouses);
-  }, []);
+  }, [usrHouseIds]);
 
   return (
     <IonPage>

@@ -2,7 +2,7 @@ import React, { useEffect, useState, createContext } from 'react';
 import { Route, Redirect } from 'react-router-dom'
 import './App.css';
 import {
-  IonApp, IonButton, IonContent, IonModal, IonRouterOutlet, setupIonicReact, IonRow, IonCol, IonText, IonGrid, IonInput,
+  IonApp, IonButton, IonContent, IonModal, IonRouterOutlet, setupIonicReact, IonRow, IonCol, IonText, IonGrid, IonInput, IonSpinner, IonPage,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import UserHome from './Components/UserHome';
@@ -44,9 +44,9 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const isLoggedIn = localStorage.getItem('token');
   const [show, setShow] = useState(false);
-  const [walletModel, setWalletModel] = useState(false)
+  const [walletModel, setWalletModel] = useState(false);
   const [user, setUser] = useState(null);
-  const [userWallet, setUserWallet] = useState('No wallet connected')
+  const [userWallet, setUserWallet] = useState('No wallet connected');
 
   // const AppContext = createContext([user, setUser]);
 
@@ -55,8 +55,8 @@ function App() {
     // if (walletFromDb) {
     //   setUserWallet(walletFromDb)
     // }
-  
-  }, [])
+
+  }, []);
 
   function toggle() {
     console.log('hello');
@@ -64,18 +64,24 @@ function App() {
   }
 
   function toggleWalletModel() {
-    setWalletModel(!walletModel)
+    setWalletModel(!walletModel);
   }
 
   function submitWallet() {
     // Save user wallet in db
-    console.log('Submitted wallet: ' + userWallet)
+    console.log(`Submitted wallet: ${userWallet}`);
   }
 
-  function HomePage(loggedIn, toggle) {
-    if (isLoggedIn) {
+  function HomePage(user, loggedIn, toggle) {
+    if (isLoggedIn && user) {
       return (
-        <UserHome toggleModal={toggle} toggleWalletModel={toggleWalletModel} />
+        <UserHome user={user} toggleModal={toggle} toggleWalletModel={toggleWalletModel} />
+      );
+    } else if (isLoggedIn) {
+      return (
+        <IonPage>
+          <IonSpinner />
+        </IonPage>
       )
     }
     return <LandingPage />;
@@ -93,7 +99,7 @@ function App() {
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet id="root">
-            <Route path="/" render={() => HomePage(isLoggedIn, toggle)} exact />
+            <Route path="/" render={() => HomePage(user, isLoggedIn, toggle)} exact />
             <Route render={() => <Redirect to={'/'} />} />
           </IonRouterOutlet>
         </IonReactRouter>
@@ -111,7 +117,10 @@ function App() {
                 size-xs={6}
                 className="ion-text-right ion-align-itesms-center"
               >
-                <IonButton onClick={() => setShow(!show)}>Close</IonButton>
+                <IonButton onClick={() => {
+                  setShow(!show)
+                  window.location.reload();
+                  }}>Close</IonButton>
               </IonCol>
             </IonRow>
           </IonGrid>
@@ -142,12 +151,15 @@ function App() {
             placeholder="Wallet"
             onIonChange={(e) => setUserWallet(e.detail.value!)}
           />
-          <p>Your Wallet: {userWallet}</p>
+          <p>
+            Your Wallet:
+            {userWallet}
+          </p>
           <IonButton onClick={() => submitWallet()}>Submit</IonButton>
         </IonContent>
       </IonModal>
     </>
-  )
+  );
 }
 
 export default App;
