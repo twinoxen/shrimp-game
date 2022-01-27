@@ -3,6 +3,7 @@ import React from 'react';
 import * as auth from '../../lib/auth';
 
 function LandingPage() {
+
   return (
     <IonPage>
       <IonContent>

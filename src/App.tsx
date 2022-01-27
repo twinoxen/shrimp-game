@@ -20,35 +20,21 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import QrScanner from './Components/QrScanner';
-import { FireBaseInstance } from './lib/firebase';
+import { checkUser, createUser } from './lib/db';
 
 setupIonicReact();
 
-async function checkUser(token) {
-  const db = FireBaseInstance.firestore();
-  const Users = db.collection('users');
-  let currentUser;
-  try {
-    await Users.where('authId', '==', token).get()
-      .then((querySnapshot) => {
-        const items = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        currentUser = items[0];
-        console.log('this is the user', currentUser);
-      });
 
-    if (user) {
-      return user;
-    }
-    console.log('No Game user for ', token);
+async function check(isLoggedIn, setUser) {
+  const result = await checkUser(isLoggedIn);
 
-    return `No Game user for ${token}`;
-    // return createUser(currentUser);
-  } catch (err) {
-    return err;
+  if (result.visits) {
+    setUser(result);
   }
+  const fullUser = localStorage.getItem('fullUser');
+  const newUser = createUser(isLoggedIn, JSON.parse(fullUser));
+  console.log(newUser);
+  // setUser(newUser);
 }
 
 function App() {
@@ -74,7 +60,7 @@ function App() {
   useEffect(() => {
     if (isLoggedIn) {
       setLoggedIn(true);
-      const check = checkUser(isLoggedIn);
+      check(isLoggedIn, setUser);
     }
   }, [loggedIn]);
 

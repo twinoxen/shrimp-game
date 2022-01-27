@@ -11,8 +11,10 @@ function watchAuth() {
   firebaseOnAuthStateChanged(auth, (user) => {
     if (user) {
       localStorage.setItem('token', user.uid);
+      localStorage.setItem('fullUser', JSON.stringify(user));
     } else {
       localStorage.removeItem('token');
+      localStorage.removeItem('fullUser');
     }
   });
 }
@@ -61,6 +63,7 @@ export async function logout() {
   await auth.signOut();
 
   localStorage.removeItem('token');
+  localStorage.removeItem('fullUser');
   window.location.reload();
 }
 
