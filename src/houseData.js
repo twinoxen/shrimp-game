@@ -73,7 +73,7 @@ export const houseData = [
     id: 11,
     name: 'Final destination',
     video:
-      '',
-    nft: '',
+      'https://storage.googleapis.com/landed-public/miami-hack-week/WinnerNFT.mp4',
+    nft: 'https://storage.googleapis.com/landed-public/miami-hack-week/Winner.gif',
   },
 ]
