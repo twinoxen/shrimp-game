@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import {
@@ -20,56 +20,66 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import QrScanner from './Components/QrScanner';
+import { FireBaseInstance } from './lib/firebase';
 
 setupIonicReact();
-function HomePage(loggedIn, toggle) {
-  if (loggedIn) {
-    return <UserHome toggleModal={toggle} />;
+
+async function checkUser(token) {
+  const db = FireBaseInstance.firestore();
+  const Users = db.collection('users');
+  let currentUser;
+  try {
+    await Users.where('authId', '==', token).get()
+      .then((querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        currentUser = items[0];
+        console.log('this is the user', currentUser);
+      });
+
+    if (user) {
+      return user;
+    }
+    console.log('No Game user for ', token);
+
+    return `No Game user for ${token}`;
+    // return createUser(currentUser);
+  } catch (err) {
+    return err;
   }
-  return <LandingPage />;
 }
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const isLoggedIn = localStorage.getItem('token');
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState(null);
 
-  // const RequireAuth = ({ children }: { children: JSX.Element }) => {
+  // const AppContext = createContext([user, setUser]);
 
-  //   if (!isLoggedIn) {
-  //     setLoggedIn(false)
-  //     return <Navigate to="/login" replace />;
-  //   }
-
-  //   setLoggedIn(true)
-
-  //   return children;
-  // }
   function toggle() {
     console.log('hello');
     setShow(!show);
   }
 
+  function HomePage(loggedIn, toggle) {
+    if (isLoggedIn) {
+      return <UserHome toggleModal={toggle} />;
+    }
+    return <LandingPage />;
+  }
+
   useEffect(() => {
     if (isLoggedIn) {
       setLoggedIn(true);
+      const check = checkUser(isLoggedIn);
     }
   }, [loggedIn]);
 
   return (
     <>
-      {/* <Routes>
-        <Route path="/LandingPage" element={<LandingPage />} />
-        <Route path="/login" element={<LandingPage />} />
-        <Route
-          path="/user-home"
-          element={(
-            <RequireAuth>
-              <UserHome />
-            </RequireAuth>
-          )}
-        />
-      </Routes> */}
       <IonApp>
         <IonReactRouter>
           <IonRouterOutlet id="root">
@@ -90,7 +100,7 @@ function App() {
                   <h2>Spot Scan In</h2>
                 </IonText>
               </IonCol>
-              <IonCol size-xs={6} className="ion-text-right ion-align-items-center">
+              <IonCol size-xs={6} className="ion-text-right ion-align-itesms-center">
                 <IonButton onClick={() => setShow(!show)}>Close</IonButton>
               </IonCol>
             </IonRow>
@@ -98,13 +108,7 @@ function App() {
           <QrScanner />
         </IonContent>
       </IonModal>
-
     </>
-    // <Routes>
-    //   <Route path="/SecondPage" element={<SecondPage />} />
-    //   <Route path="about" element={<About />} />
-    //   <Route path="/" element={currentHomepage(loggedIn)} />
-    // </Routes>
   );
 }
 

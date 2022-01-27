@@ -25,7 +25,7 @@ export async function loginWithGoogle() {
   try {
     const result = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
-
+    window.location.reload();
     return credential;
   } catch (err) {
     console.error(err);
@@ -61,6 +61,7 @@ export async function logout() {
   await auth.signOut();
 
   localStorage.removeItem('token');
+  window.location.reload();
 }
 
 export const onAuthStateChanged = firebaseOnAuthStateChanged;
