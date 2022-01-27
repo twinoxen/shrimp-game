@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
   IonAccordion,
   IonAccordionGroup,
@@ -13,15 +13,15 @@ import {
   IonPage,
   IonRow,
   IonAvatar,
-} from '@ionic/react'
-import StickyNav from '../StickyNav'
-import { houseData } from '../../houseData'
+} from '@ionic/react';
+import StickyNav from '../StickyNav';
+import { houseData } from '../../houseData';
 
-import defaultImg from '../../assets/logo2.jpeg'
+import defaultImg from '../../assets/logo2.jpeg';
 
 function HouseCard({ verified, houseObj }) {
-  if (!houseObj) return null
-  const img = verified ? houseObj.nft : defaultImg
+  if (!houseObj) return null;
+  const img = verified ? houseObj.nft : defaultImg;
   return (
     <IonContent>
       <IonItem>
@@ -31,7 +31,7 @@ function HouseCard({ verified, houseObj }) {
         <IonLabel>{houseObj.name}</IonLabel>
       </IonItem>
     </IonContent>
-  )
+  );
 }
 
-export default HouseCard
+export default HouseCard;

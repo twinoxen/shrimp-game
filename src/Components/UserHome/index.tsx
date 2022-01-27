@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import {
   IonAccordion,
   IonAccordionGroup,
@@ -12,37 +12,44 @@ import {
   IonList,
   IonPage,
   IonRow,
-} from '@ionic/react'
-import StickyNav from '../StickyNav'
-import HouseCard from '../HouseCard'
+} from '@ionic/react';
+import StickyNav from '../StickyNav';
+import HouseCard from '../HouseCard';
 
-import { houseData } from '../../houseData'
+import { houseData } from '../../houseData';
 
-function UserHome({ toggleModal, toggleWalletModel }) {
-  const [fullscreen, setFullscreen] = useState(true)
-  const [verifiedHouses, setVerifiedHouses] = useState([])
-  const [otherHouses, setOtherHouses] = useState([])
+function UserHome({ user, toggleModal, toggleWalletModel }) {
+  const [verifiedHouses, setVerifiedHouses] = useState([]);
+  const [otherHouses, setOtherHouses] = useState([]);
+  const [usrHouseIds, setUsrHouseIds] = useState([]);
 
   useEffect(() => {
-    const usrHouseIds = Array.from(new Set([1, 8, 9]))
+    if (user.visitedHouses && Array.isArray(user.visitedHouses)) {
+      let houses = Array.from(new Set(user.visitedHouses));
+      console.log('thses are the houses', houses)
+      setUsrHouseIds(houses);
+    }
+  },[user])
 
-    let verifiedSet = new Set()
-    let otherSet = new Set()
+  useEffect(() => {
+
+    const verifiedSet = new Set();
+    const otherSet = new Set();
     houseData.forEach((house) => {
       if (usrHouseIds.includes(house.id)) {
-        console.log(house)
-        console.log('Verified house: ' + house.name)
-        verifiedSet.add(house)
+        console.log(house);
+        console.log(`Verified house: ${house.name}`);
+        verifiedSet.add(house);
       } else {
-        otherSet.add(house)
+        otherSet.add(house);
       }
-    })
+    });
 
-    setVerifiedHouses(Array.from(verifiedSet))
-    setOtherHouses(Array.from(otherSet))
+    setVerifiedHouses(Array.from(verifiedSet));
+    setOtherHouses(Array.from(otherSet));
 
-    console.log(verifiedHouses)
-  }, [])
+    console.log(verifiedHouses);
+  }, [usrHouseIds]);
 
   return (
     <IonPage>
@@ -63,7 +70,7 @@ function UserHome({ toggleModal, toggleWalletModel }) {
                     <IonList slot="content">
                       {verifiedHouses.map((item: any) => (
                         <IonItem key={item.id}>
-                          <HouseCard verified={true} houseObj={item} />
+                          <HouseCard verified houseObj={item} />
                         </IonItem>
                       ))}
                     </IonList>
@@ -98,7 +105,7 @@ function UserHome({ toggleModal, toggleWalletModel }) {
 
       {/* <StickyNav key={0} toggleModal={toggle.bind(this)} /> */}
     </IonPage>
-  )
+  );
 }
 
-export default UserHome
+export default UserHome;
