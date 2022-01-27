@@ -9,13 +9,10 @@ import {
   IonLabel,
   IonList,
   IonListHeader,
-  IonFooter,
-  IonTitle,
-  IonText,
-} from '@ionic/react';
-import React from 'react';
-import * as auth from '../../lib/auth';
-import Logo from '../../assets/shrimpgamepink.png';
+} from '@ionic/react'
+import React from 'react'
+import * as auth from '../../lib/auth'
+import Logo from '../../assets/shrimpgamepink.png'
 
 function LandingPage() {
   return (
@@ -40,7 +37,7 @@ function LandingPage() {
                 <h5>SEARCH | COMPETE | SPOT</h5>
               </IonRow>
               <IonRow className="ion-justify-content-center">
-                <IonCol size-md={6} className="ion-justify-text-center">
+                <IonCol size-md={6} className="ion-justify-content-center">
                   <IonButton onClick={auth.loginWithGoogle} type="button">
                     Login with google
                   </IonButton>
@@ -70,8 +67,7 @@ function LandingPage() {
                   className="ion-padding-bottom"
                   style={{ backgroundColor: '#222428', color: '#fdfdfd' }}
                 >
-                  Receive the final envelope at the MHW expo Friday at 3pm
-                  {' '}
+                  Receive the final envelope at the MHW expo Friday at 3pm{' '}
                 </div>
                 <div
                   className="ion-padding-bottom"
@@ -83,7 +79,7 @@ function LandingPage() {
               </IonList>
             </IonCol>
           </IonRow>
-          <IonRow>
+          <IonRow className="ion-justify-content-center">
             <IonListHeader className="ion-padding-bottom">
               <IonLabel style={{ color: '#fdfdfd' }}>The Spots:</IonLabel>
             </IonListHeader>
@@ -141,7 +137,7 @@ function LandingPage() {
         </IonGrid>
       </IonContent>
     </IonPage>
-  );
+  )
 }
 
-export default LandingPage;
+export default LandingPage
