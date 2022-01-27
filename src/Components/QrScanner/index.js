@@ -44,7 +44,7 @@ function QrScanner() {
       )}
 
       <p>
-        {house.name}
+        {isScanned ? house.name : 'Scan spot QR code'}
         {isScanned && ' NFT collected! 🎉'}
       </p>
 

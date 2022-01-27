@@ -24,12 +24,12 @@ function UserHome({ toggleModal }) {
   const [otherHouses, setOtherHouses] = useState([])
 
   useEffect(() => {
-    const tmp = [2, 3, 1]
+    const usrHouseIds = Array.from(new Set([1,8,9]))
 
     let verifiedSet = new Set()
     let otherSet = new Set()
     houseData.forEach((house) => {
-      if (tmp.includes(house.id)) {
+      if (usrHouseIds.includes(house.id)) {
         console.log(house)
         console.log('Verified house: ' + house.name)
         verifiedSet.add(house)
