@@ -6,7 +6,6 @@ import {
   IonCol,
   IonButton,
   IonImg,
-  div,
   IonLabel,
   IonList,
   IonListHeader,
