@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 // import { Routes, Route, Link } from 'react-router-dom';
-import { Container, Row, Accordion, Button, Modal } from 'react-bootstrap';
-import AccordionBody from 'react-bootstrap/esm/AccordionBody';
-import StickyNav from '../StickyNav';
+import { Container, Row, Accordion, Button, Modal } from 'react-bootstrap'
+import AccordionBody from 'react-bootstrap/esm/AccordionBody'
+import StickyNav from '../StickyNav'
+import  QrScanner from '../QrScanner/index'
 
 function UserHome() {
-  const [fullscreen, setFullscreen] = useState(true);
-  const [show, setShow] = useState(false);
+  const [fullscreen, setFullscreen] = useState(true)
+  const [show, setShow] = useState(false)
 
   function toggle() {
-    console.log('hello');
-    setShow(true);
+    console.log('hello')
+    setShow(true)
   }
 
   return (
@@ -32,7 +33,9 @@ function UserHome() {
             <Accordion.Item eventKey="1">
               <Accordion.Header>Remaining Houses</Accordion.Header>
               <AccordionBody>
-                <Button variant="light" disabled>example house</Button>
+                <Button variant="light" disabled>
+                  example house
+                </Button>
               </AccordionBody>
             </Accordion.Item>
           </Accordion>
@@ -43,12 +46,13 @@ function UserHome() {
 
       <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal</Modal.Title>
+          <Modal.Title>Spot Scan In</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Modal body content</Modal.Body>
+        <QrScanner />
+        {/* <Modal.Body>Modal body content</Modal.Body> */}
       </Modal>
     </>
-  );
+  )
 }
 
-export default UserHome;
+export default UserHome
