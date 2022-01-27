@@ -1,12 +1,49 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import {
-  IonAccordion, IonAccordionGroup, IonCard, IonCol, IonContent, IonGrid, IonItem, IonLabel, IonList, IonPage, IonRow,
-} from '@ionic/react';
-import StickyNav from '../StickyNav';
+  IonAccordion,
+  IonAccordionGroup,
+  IonCard,
+  IonCol,
+  IonContent,
+  IonGrid,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonPage,
+  IonRow,
+} from '@ionic/react'
+import StickyNav from '../StickyNav'
+import HouseCard from '../HouseCard'
+
+import { houseData } from '../../houseData'
 
 function UserHome({ toggleModal }) {
-  const [fullscreen, setFullscreen] = useState(true);
+  const [fullscreen, setFullscreen] = useState(true)
+  const [verifiedHouses, setVerifiedHouses] = useState([])
+  const [otherHouses, setOtherHouses] = useState([])
+
+  useEffect(() => {
+    const tmp = [2, 3, 1]
+
+    let verifiedSet = new Set()
+    let otherSet = new Set()
+    houseData.forEach((house) => {
+      if (tmp.includes(house.id)) {
+        console.log(house)
+        console.log('Verified house: ' + house.name)
+        verifiedSet.add(house)
+      } else {
+        otherSet.add(house)
+      }
+    })
+
+    setVerifiedHouses(Array.from(verifiedSet))
+    setOtherHouses(Array.from(otherSet))
+
+    console.log(verifiedHouses)
+  }, []);
+  
 
   return (
     <IonPage>
@@ -14,7 +51,6 @@ function UserHome({ toggleModal }) {
         <IonGrid>
           <IonRow className="ion-justify-content-center">
             <IonCol size-md={6}>
-
               {/* visitedHouses */}
               <IonCard>
                 <IonAccordionGroup>
@@ -26,15 +62,11 @@ function UserHome({ toggleModal }) {
                     </IonItem>
 
                     <IonList slot="content">
-                      <IonItem>
-                        <IonLabel>Red</IonLabel>
-                      </IonItem>
-                      <IonItem>
-                        <IonLabel>Green</IonLabel>
-                      </IonItem>
-                      <IonItem>
-                        <IonLabel>Blue</IonLabel>
-                      </IonItem>
+                      {verifiedHouses.map((item: any) => (
+                        <IonItem key={item.id}>
+                          <HouseCard verified={true} houseObj={item} />
+                        </IonItem>
+                      ))}
                     </IonList>
                   </IonAccordion>
                 </IonAccordionGroup>
@@ -48,19 +80,14 @@ function UserHome({ toggleModal }) {
                   </IonItem>
 
                   <IonList slot="content">
-                    <IonItem>
-                      <IonLabel>Circle</IonLabel>
-                    </IonItem>
-                    <IonItem>
-                      <IonLabel>Triangle</IonLabel>
-                    </IonItem>
-                    <IonItem>
-                      <IonLabel>Square</IonLabel>
-                    </IonItem>
+                    {otherHouses.map((item: any) => (
+                      <IonItem key={item.id}>
+                        <HouseCard verified={false} houseObj={item} />
+                      </IonItem>
+                    ))}
                   </IonList>
                 </IonAccordion>
               </IonAccordionGroup>
-
             </IonCol>
           </IonRow>
         </IonGrid>
@@ -69,7 +96,7 @@ function UserHome({ toggleModal }) {
 
       {/* <StickyNav key={0} toggleModal={toggle.bind(this)} /> */}
     </IonPage>
-  );
+  )
 }
 
-export default UserHome;
+export default UserHome
