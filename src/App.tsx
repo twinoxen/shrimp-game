@@ -24,15 +24,18 @@ import { checkUser, createUser } from './lib/db';
 
 setupIonicReact();
 
-
 async function check(isLoggedIn, setUser) {
+  const token = localStorage.getItem('token');
   const result = await checkUser(isLoggedIn);
+  console.log('isLoggedIn', isLoggedIn);
+  console.log('this is the user result', result);
   const fullUser = localStorage.getItem('fullUser');
 
-  if (result.visits) {
+  if (result.visitedHouses) {
     setUser(result);
+    return;
   }
-  const newUser = createUser(isLoggedIn, JSON.parse(fullUser));
+  const newUser = await createUser(isLoggedIn, JSON.parse(fullUser));
   console.log(newUser);
   // setUser(newUser);
 }
