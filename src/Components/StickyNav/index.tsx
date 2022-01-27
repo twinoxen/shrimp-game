@@ -14,7 +14,7 @@ function StickyNav({ toggleModal, toggleWalletModel }) {
         <IonToolbar>
           <IonRow className="ion-justify-content-center">
             <IonCol size-xs={3} className="ion-text-center">
-              <BsWallet onClick={() => toggleWalletModel()} />
+              <BsWallet />
             </IonCol>
             <IonCol size-xs={3} className="ion-text-center">
               <BsPatchCheck onClick={() => toggleModal()} />

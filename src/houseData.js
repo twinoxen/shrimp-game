@@ -50,7 +50,7 @@ export const houseData = [
   },
   {
     id: 8,
-    name: 'La Tropical',
+    name: 'Cerveceria La Tropical',
     video:
       'https://storage.googleapis.com/landed-public/miami-hack-week/LaTropicalNFT.mp4',
     nft: 'https://storage.googleapis.com/landed-public/miami-hack-week/La%20Tropical.png',

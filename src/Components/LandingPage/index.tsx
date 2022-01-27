@@ -19,8 +19,8 @@ function LandingPage() {
     <IonPage>
       <IonContent color="dark">
         <IonGrid>
-          <IonRow className="ion-justify-content-center">
-            <IonImg src={Logo} alt="shrimp games logo" />
+          <IonRow className="ion-justify-content-center ion-margin-vertical">
+            <IonImg src={Logo} alt="shrimp games logo" className="ion-margin-vertical"/>
           </IonRow>
           <IonRow className="ion-justify-content-center">
             <IonCol
@@ -29,7 +29,7 @@ function LandingPage() {
             >
               <IonRow className="ion-justify-content-center">
                 <h3>
-                  an IRL NFT scavenger hunt at Miami Hack Week for a $1,000 cash
+                  An IRL NFT scavenger hunt at Miami Hack Week for a $1,000 cash
                   prize
                 </h3>
               </IonRow>
@@ -37,13 +37,13 @@ function LandingPage() {
                 <h5>SEARCH | COMPETE | SPOT</h5>
               </IonRow>
               <IonRow className="ion-justify-content-center">
-                <IonCol size-md={6} className="ion-justify-content-center">
+                <IonCol size-xs={6} className="ion-justify-content-center">
                   <IonButton onClick={auth.loginWithGoogle} type="button">
                     Login with google
                   </IonButton>
-                  <IonButton onClick={auth.logout} type="button">
+                  {/* <IonButton onClick={auth.logout} type="button">
                     Log out
-                  </IonButton>
+                  </IonButton> */}
                 </IonCol>
               </IonRow>
               <IonList style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
@@ -98,7 +98,7 @@ function LandingPage() {
                 <IonLabel>HF0 Hacker Village</IonLabel>
               </div>
               <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
-                <IonLabel>La Tropical</IonLabel>
+                <IonLabel>Cerveceria La Tropical</IonLabel>
               </div>
               <div style={{ backgroundColor: '#222428', color: '#fdfdfd' }}>
                 <IonLabel>Hacker HQ (Annex)</IonLabel>

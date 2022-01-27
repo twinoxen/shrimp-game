@@ -80,7 +80,13 @@ function App() {
     } else if (isLoggedIn) {
       return (
         <IonPage>
-          <IonSpinner />
+          <IonContent>
+            <IonGrid className="ion-align-items-center">
+              <IonRow className="ion-justify-content-center ion-margin-vertical">
+                <IonSpinner />
+              </IonRow>
+            </IonGrid>
+          </IonContent>
         </IonPage>
       )
     }

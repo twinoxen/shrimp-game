@@ -12,9 +12,11 @@ import {
   IonList,
   IonPage,
   IonRow,
+  IonImg
 } from '@ionic/react';
 import StickyNav from '../StickyNav';
 import HouseCard from '../HouseCard';
+import Logo from '../../assets/shrimpgamepink.png'
 
 import { houseData } from '../../houseData';
 
@@ -54,7 +56,10 @@ function UserHome({ user, toggleModal, toggleWalletModel }) {
   return (
     <IonPage>
       <IonContent>
-        <IonGrid>
+        <IonGrid >
+          <IonRow className="ion-justify-content-center ion-margin-vertical" style={{background: 'black'}}>
+            <IonImg src={Logo} alt="shrimp games logo" className="ion-margin-vertical"/>
+          </IonRow>
           <IonRow className="ion-justify-content-center">
             <IonCol size-md={6}>
               {/* visitedHouses */}
@@ -79,21 +84,30 @@ function UserHome({ user, toggleModal, toggleWalletModel }) {
               </IonCard>
 
               {/* unvisitedHouses */}
-              <IonAccordionGroup>
-                <IonAccordion value="unvisitedHouses">
-                  <IonItem slot="header" className="padding-vertical">
-                    <IonLabel>Spots to Visit</IonLabel>
-                  </IonItem>
+              <IonCard className="ion-align-self-end">
+                <IonAccordionGroup>
+                  <IonAccordion value="unvisitedHouses">
+                    <IonItem slot="header" className="padding-vertical">
+                      <IonLabel>Spots to Visit</IonLabel>
+                    </IonItem>
 
-                  <IonList slot="content">
-                    {otherHouses.map((item: any) => (
-                      <IonItem key={item.id}>
-                        <HouseCard verified={false} houseObj={item} />
-                      </IonItem>
-                    ))}
-                  </IonList>
-                </IonAccordion>
-              </IonAccordionGroup>
+                    <IonList slot="content">
+                      {otherHouses.map((item: any) => (
+                        <IonItem key={item.id}>
+                          <HouseCard verified={false} houseObj={item} />
+                        </IonItem>
+                      ))}
+                    </IonList>
+                  </IonAccordion>
+                </IonAccordionGroup>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow className="ion-justify-content-center">
+            <IonCol className="ion-center-text">
+              <h2 className="ion-center-text">Notes on the Game</h2>
+                <li>Click the Check Mark below to Scan In!</li>
+                <li>NFT Minting Instructions will be emailed to you after the game ends!</li>
             </IonCol>
           </IonRow>
         </IonGrid>
