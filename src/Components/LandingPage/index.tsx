@@ -43,7 +43,7 @@ function LandingPage() {
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol color="dark" size-md={6} className="ion-justify-content-center">
+            <IonCol color="dark" size-md={2} className="ion-justify-content-center">
               <IonItem>
                 <IonLabel>Shrimp Society House</IonLabel>
               </IonItem>
@@ -60,7 +60,7 @@ function LandingPage() {
                 <IonLabel>Hacker HQ (Annex)</IonLabel>
               </IonItem>
             </IonCol>
-            <IonCol color="dark" size-md={6} className="ion-justify-content-center">
+            <IonCol color="dark" size-md={2} className="ion-justify-content-center">
               <IonItem>
                 <IonLabel>Threshold House</IonLabel>
               </IonItem>
@@ -74,7 +74,7 @@ function LandingPage() {
                 <IonLabel>Usage.Ai House</IonLabel>
               </IonItem>
               <IonItem>
-                <IonLabel>Arena House</IonLabel>
+                <IonLabel>Quicknode</IonLabel>
               </IonItem>
             </IonCol>
           </IonRow>
