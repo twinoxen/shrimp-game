@@ -1,5 +1,4 @@
 export const houseData = [
-  { id: 69, name: 'Scan in', video: '', nft: '' },
   {
     id: 1,
     name: 'HFO Hackervillage',
