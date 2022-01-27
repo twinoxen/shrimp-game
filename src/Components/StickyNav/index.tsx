@@ -1,5 +1,4 @@
 import React from 'react';
-import { Nav } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
 import { BsPatchCheck, BsWallet } from 'react-icons/bs';
 import { BiUserCircle } from 'react-icons/bi';
@@ -24,7 +23,7 @@ function StickyNav({ toggleModal }) {
         </IonToolbar>
       </IconContext.Provider>
     </IonFooter>
-  );
+  )
 }
 
 export default StickyNav;

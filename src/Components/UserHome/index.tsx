@@ -1,17 +1,12 @@
-import {
-  IonAccordion, IonAccordionGroup, IonApp, IonCard, IonCol, IonContent, IonGrid, IonItem, IonLabel, IonList, IonPage, IonRow,
-} from '@ionic/react';
+/* eslint-disable max-len */
 import React, { useState } from 'react';
+import {
+  IonAccordion, IonAccordionGroup, IonCard, IonCol, IonContent, IonGrid, IonItem, IonLabel, IonList, IonPage, IonRow,
+} from '@ionic/react';
 import StickyNav from '../StickyNav';
 
-function UserHome() {
+function UserHome({ toggleModal }) {
   const [fullscreen, setFullscreen] = useState(true);
-  const [show, setShow] = useState(false);
-
-  function toggle() {
-    console.log('hello');
-    setShow(true);
-  }
 
   return (
     <IonPage>
@@ -70,7 +65,9 @@ function UserHome() {
           </IonRow>
         </IonGrid>
       </IonContent>
-      <StickyNav toggleModal={toggle} />
+      <StickyNav toggleModal={toggleModal} />
+
+      {/* <StickyNav key={0} toggleModal={toggle.bind(this)} /> */}
     </IonPage>
   );
 }
