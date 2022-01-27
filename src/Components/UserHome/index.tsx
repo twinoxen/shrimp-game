@@ -1,19 +1,12 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import {
-  IonAccordion, IonAccordionGroup, IonApp, IonCard, IonCol, IonContent, IonGrid, IonItem, IonLabel, IonList, IonPage, IonRow,
+  IonAccordion, IonAccordionGroup, IonCard, IonCol, IonContent, IonGrid, IonItem, IonLabel, IonList, IonPage, IonRow,
 } from '@ionic/react';
-import { Modal } from 'react-bootstrap'
-import StickyNav from '../StickyNav'
-import  QrScanner from '../QrScanner/index'
+import StickyNav from '../StickyNav';
 
-function UserHome() {
-  const [fullscreen, setFullscreen] = useState(true)
-  const [show, setShow] = useState(false)
-
-  function toggle() {
-    console.log('hello')
-    setShow(true)
-  }
+function UserHome({ toggleModal }) {
+  const [fullscreen, setFullscreen] = useState(true);
 
   return (
     <IonPage>
@@ -72,19 +65,11 @@ function UserHome() {
           </IonRow>
         </IonGrid>
       </IonContent>
-      <StickyNav toggleModal={toggle} />
+      <StickyNav toggleModal={toggleModal} />
 
-      <StickyNav key={0} toggleModal={toggle.bind(this)} />
-
-      <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Spot Scan In</Modal.Title>
-        </Modal.Header>
-        <QrScanner />
-        {/* <Modal.Body>Modal body content</Modal.Body> */}
-      </Modal>
+      {/* <StickyNav key={0} toggleModal={toggle.bind(this)} /> */}
     </IonPage>
-  )
+  );
 }
 
-export default UserHome
+export default UserHome;
