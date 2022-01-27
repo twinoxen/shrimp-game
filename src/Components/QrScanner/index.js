@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import QrReader from 'react-qr-reader'
 import { Player } from 'video-react'
-import {houseData} from '../../houseData'
-
-
+import { houseData } from '../../houseData'
 
 function QrScanner() {
-  const [houseId, setHouseId] = useState(69)
+  const [house, setHouse] = useState({})
   const [isScanned, setIsScanned] = useState(false)
 
   const handleScan = (data) => {
@@ -14,12 +12,19 @@ function QrScanner() {
       const myArray = data.split('house_')
       const houseId = myArray[1].toString()
       console.log('Scanned house: ' + houseId)
-      setHouseId(houseId)
+
+      let house
+      houseData.forEach(item => {
+        if (item.id === parseInt(houseId)) {
+          house = item
+        }
+      })
+
+      setHouse(house)
 
       setIsScanned(true)
 
       // Save scan in database database
-
     }
   }
 
@@ -39,13 +44,13 @@ function QrScanner() {
       )}
 
       <p>
-        {houseData[houseId].name}
+        {house.name}
         {isScanned && ' NFT collected! 🎉'}
       </p>
 
       {isScanned && (
         <video autoPlay style={{ width: '100%' }}>
-          <source src={houseData[houseId].video} type="video/mp4" />
+          <source src={house.video} type="video/mp4" />
         </video>
       )}
     </div>
