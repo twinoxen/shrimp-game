@@ -108,6 +108,7 @@ function UserHome({ user, toggleModal, toggleWalletModel }) {
               <h2 className="ion-center-text">Notes on the Game</h2>
                 <li>Click the Check Mark below to Scan In!</li>
                 <li>NFT Minting Instructions will be emailed to you after the game ends!</li>
+                <li>*Does Not work w/Brave Browser!</li>
             </IonCol>
           </IonRow>
         </IonGrid>

@@ -55,11 +55,16 @@ function QrScanner() {
           style={{ width: '100%' }}
         />
       )}
-
-      <p>
+      <h3>
         {isScanned ? house.name : 'Scan spot QR code'}
         {isScanned && ' NFT collected! 🎉'}
-      </p>
+      </h3>
+
+      <br />
+      <br />
+
+      <span>Quick Tip!</span>
+      <p>Try Scanning from a different angle</p>
 
       {isScanned && (
         <video autoPlay style={{ width: '100%' }} controls muted>
