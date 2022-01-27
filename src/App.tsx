@@ -27,11 +27,11 @@ setupIonicReact();
 
 async function check(isLoggedIn, setUser) {
   const result = await checkUser(isLoggedIn);
+  const fullUser = localStorage.getItem('fullUser');
 
   if (result.visits) {
     setUser(result);
   }
-  const fullUser = localStorage.getItem('fullUser');
   const newUser = createUser(isLoggedIn, JSON.parse(fullUser));
   console.log(newUser);
   // setUser(newUser);
@@ -62,7 +62,7 @@ function App() {
       setLoggedIn(true);
       check(isLoggedIn, setUser);
     }
-  }, [loggedIn]);
+  }, []);
 
   return (
     <>
