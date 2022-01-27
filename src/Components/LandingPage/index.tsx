@@ -42,6 +42,42 @@ function LandingPage() {
               </IonList>
             </IonCol>
           </IonRow>
+          <IonRow>
+            <IonCol color="dark" size-md={6} className="ion-justify-content-center">
+              <IonItem>
+                <IonLabel>Shrimp Society House</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>CIC Miami</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>HF0 Hacker Village</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>La Tropical</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>Hacker HQ (Annex)</IonLabel>
+              </IonItem>
+            </IonCol>
+            <IonCol color="dark" size-md={6} className="ion-justify-content-center">
+              <IonItem>
+                <IonLabel>Threshold House</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>Polygon House</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>TrueWorks House</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>Usage.Ai House</IonLabel>
+              </IonItem>
+              <IonItem>
+                <IonLabel>Arena House</IonLabel>
+              </IonItem>
+            </IonCol>
+          </IonRow>
           <IonRow className="ion-justify-content-center">
             <IonCol size-md={6} className="ion-justify-content-center">
               <IonButton onClick={auth.loginWithGoogle} type="button">Login with google</IonButton>
@@ -55,7 +91,7 @@ function LandingPage() {
           powered by SpotX
         </IonTitle>
         <IonText>
-          SPOT: Solana Proof of {thing}
+          SPOT: Solana Proof of thing
           Solana Proof of Thing is a protocol that allows anyone to create 
           location-based NFTs. Similar to POAPs, SPOTs act as earned collectibles 
           on the Solana ecosystem.
