@@ -1,4 +1,4 @@
-import { IonPage, IonContent, IonGrid, IonRow, IonCol, IonButton, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonFooter, IonTitle } from '@ionic/react';
+import { IonPage, IonContent, IonGrid, IonRow, IonCol, IonButton, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonFooter, IonTitle, IonText } from '@ionic/react';
 import React from 'react';
 import * as auth from '../../lib/auth';
 import Logo from '../../assets/shrimpgamepink.png';
@@ -54,6 +54,12 @@ function LandingPage() {
         <IonTitle>
           powered by SpotX
         </IonTitle>
+        <IonText>
+          SPOT: Solana Proof of {thing}
+          Solana Proof of Thing is a protocol that allows anyone to create 
+          location-based NFTs. Similar to POAPs, SPOTs act as earned collectibles 
+          on the Solana ecosystem.
+        </IonText>
       </IonFooter>
     </IonPage>
   );
