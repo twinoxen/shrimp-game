@@ -64,9 +64,16 @@ export const houseData = [
   },
   {
     id: 10,
-    name: 'Arena',
+    name: 'Casa de Quicknode',
     video:
-      'https://storage.googleapis.com/landed-public/miami-hack-week/ArenaNFT.mp4',
-    nft: 'https://storage.googleapis.com/landed-public/miami-hack-week/Arena%20House%20.png',
+      'https://storage.googleapis.com/landed-public/miami-hack-week/QuicknodeNFT.mp4',
+    nft: 'https://storage.googleapis.com/landed-public/miami-hack-week/Casa%20de%20Quicknode.png',
+  },
+  {
+    id: 11,
+    name: 'Final destination',
+    video:
+      '',
+    nft: '',
   },
 ]
