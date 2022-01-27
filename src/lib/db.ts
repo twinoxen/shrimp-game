@@ -105,3 +105,27 @@ export async function saveCheckin(token, visitedHouses) {
     return err;
   }
 }
+
+export async function saveWalletAddress(token, walletAddress) {
+  try {
+    const usersRef = collection(db, 'users');
+    console.log('here is the checkUser token', token);
+    const q = query(usersRef, where('id', '==', token));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (dbdoc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(dbdoc.id, ' => ', dbdoc.data());
+      const userDocRef = doc(db, 'users', dbdoc.id);
+
+      const result = await updateDoc(userDocRef, {
+        walletAddress,
+      });
+
+      return result;
+    });
+    return;
+  } catch (err) {
+    return err;
+  }
+}

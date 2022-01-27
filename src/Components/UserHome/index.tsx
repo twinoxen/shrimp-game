@@ -116,8 +116,6 @@ function UserHome({ user, toggleModal, toggleWalletModel }) {
         toggleModal={toggleModal}
         toggleWalletModel={toggleWalletModel}
       />
-
-      {/* <StickyNav key={0} toggleModal={toggle.bind(this)} /> */}
     </IonPage>
   );
 }
